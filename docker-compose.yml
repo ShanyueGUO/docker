@@ -1,0 +1,17 @@
+version: '2'
+services:
+  springboot-mysql-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:3306"
+    depends_on:
+      - mysql
+  mysql:
+    image: docker.io/mysql:5
+    environment:
+      MYSQL_DATABASE: db_example
+      MYSQL_ROOT_PASSWORD: 'ThePassword'
+      MYSQL_ROOT_HOST: 'springuser'
+    restart: always
